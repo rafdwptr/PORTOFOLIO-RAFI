@@ -595,13 +595,60 @@
 
     @keyframes pulse { 0% { opacity: 1; } 50% { opacity: 0.4; } 100% { opacity: 1; } }
 
-    /* OPTIMASI KHUSUS TAMPILAN HP (MOBILE FRIENDLY) */
+    /* =================================================== */
+    /* ATURAN HEADER KHUSUS HP (RESPONSIF MOBILE REVISED)   */
+    /* =================================================== */
     @media (max-width: 768px) {
       .container { padding: 0 14px; }
-      .nav-container { flex-wrap: wrap; gap: 10px; justify-content: center; padding: 0 14px; }
-      .nav-links { overflow-x: auto; width: 100%; justify-content: flex-start; padding-bottom: 6px; }
-      .nav-links button { padding: 6px 12px; font-size: 0.8rem; white-space: nowrap; }
-      .time-widget { display: none; }
+      
+      /* Baris Atas: Logo Kiri - Tombol Tema Kanan */
+      .nav-container { 
+        display: flex;
+        flex-wrap: wrap; 
+        justify-content: space-between; 
+        align-items: center; 
+        padding: 0 14px; 
+      }
+      
+      .nav-left {
+        order: 1;
+      }
+
+      .nav-right {
+        order: 2;
+        display: flex;
+        align-items: center;
+        gap: 8px;
+      }
+
+      /* Tampilkan kembali Jam di HP */
+      .time-widget { 
+        display: flex !important;
+        font-size: 0.7rem;
+        padding: 4px 8px;
+      }
+
+      .theme-btn {
+        width: 32px;
+        height: 32px;
+        font-size: 0.85rem;
+      }
+
+      /* Baris Bawah: Menu Tab Scroll Horizontal */
+      .nav-links { 
+        order: 3;
+        width: 100%;
+        overflow-x: auto; 
+        justify-content: flex-start; 
+        padding-top: 10px;
+        padding-bottom: 2px;
+      }
+      
+      .nav-links button { 
+        padding: 6px 12px; 
+        font-size: 0.8rem; 
+        white-space: nowrap; 
+      }
       
       .hero { padding: 25px 0 15px; }
       .hero h1 { font-size: 1.75rem; }
@@ -626,8 +673,10 @@
 </head>
 <body>
 
+  <!-- Toast Notification Copy -->
   <div id="toast" class="toast-msg"><i class="fa-solid fa-check-circle"></i> Berhasil disalin ke clipboard!</div>
 
+  <!-- Navbar Navigation -->
   <nav>
     <div class="nav-container">
       <div class="nav-left">
@@ -659,8 +708,10 @@
 
   <div class="container">
 
+    <!-- 1. PROFILE SECTION -->
     <div id="tab-profile" class="section-block">
       <header class="hero">
+        <!-- Foto Profil dengan Fitur Zoom -->
         <div class="img-wrapper" onclick="openLightbox('foto-rafi.jpg')">
           <img src="foto-rafi.jpg" alt="Rafi Dwi Putra" class="profile-img">
           <div class="profile-zoom-overlay"><i class="fa-solid fa-magnifying-glass-plus"></i></div>
@@ -673,6 +724,7 @@
         <div class="btn-group">
           <button class="btn btn-primary" onclick="openContactModal()"><i class="fa-solid fa-paper-plane"></i> Hubungi Saya</button>
           
+          <!-- Tombol Ke Google Drive PDF CV -->
           <a href="https://drive.google.com/file/d/1nRXF-NIvEv8pWn76VzKGM5H4f93766vX/view?usp=sharing" target="_blank" class="btn btn-secondary"><i class="fa-solid fa-file-arrow-down"></i> Lihat / Download CV</a>
           
           <a href="https://www.linkedin.com/in/rafi-dwi-putra-182873194/" target="_blank" class="btn btn-secondary"><i class="fa-brands fa-linkedin"></i> LinkedIn</a>
@@ -695,6 +747,7 @@
       </header>
     </div>
 
+    <!-- 2. TENTANG SECTION -->
     <div id="tab-about" class="section-block">
       <div class="card-box">
         <h2><i class="fa-solid fa-user-gear"></i> Tentang Saya</h2>
@@ -717,6 +770,7 @@
       </div>
     </div>
 
+    <!-- 3. KEAHLIAN SECTION -->
     <div id="tab-skills" class="section-block">
       <div class="card-box">
         <h2><i class="fa-solid fa-microchip"></i> Keahlian & Tools Utama</h2>
@@ -738,6 +792,7 @@
       </div>
     </div>
 
+    <!-- 4. PENGALAMAN SECTION -->
     <div id="tab-experience" class="section-block">
       <div class="card-box">
         <h2><i class="fa-solid fa-briefcase"></i> Pengalaman Kerja</h2>
@@ -785,6 +840,7 @@
       </div>
     </div>
 
+    <!-- 5. SERTIFIKASI SECTION -->
     <div id="tab-certifications" class="section-block">
       <div class="card-box">
         <h2><i class="fa-solid fa-certificate"></i> Sertifikasi Profesional</h2>
@@ -892,6 +948,7 @@
 
   </div>
 
+  <!-- FOOTER SECTION -->
   <footer>
     <div class="container footer-content">
       <div class="footer-socials">
@@ -912,11 +969,13 @@
     </div>
   </footer>
 
+  <!-- MODAL LIGHTBOX FOTO PROFIL & SERTIFIKAT -->
   <div id="lightboxModal" class="modal" onclick="closeModal('lightboxModal')">
     <span class="close-modal">&times;</span>
     <img class="lightbox-img" id="modalCertImg" onclick="event.stopPropagation()">
   </div>
 
+  <!-- MODAL HUBUNGI SAYA -->
   <div id="contactModal" class="modal" onclick="closeModal('contactModal')">
     <div class="contact-modal-box" onclick="event.stopPropagation()">
       <h3>Hubungi Rafi</h3>
@@ -958,12 +1017,13 @@
         </a>
 
         <button type="button" class="social-btn btn-back" onclick="closeModal('contactModal')">
-          <i class="fa-solid fa-arrow-left"></i> Kembali ke Profile
+          <i class="fa-solid fa-arrow-left"></i> Kembali ke Profil
         </button>
       </div>
     </div>
   </div>
 
+  <!-- TOMBOL SCROLL TO TOP -->
   <button id="scrollTopBtn" onclick="scrollToTop()" title="Kembali ke Atas">
     <i class="fa-solid fa-arrow-up"></i>
   </button>
