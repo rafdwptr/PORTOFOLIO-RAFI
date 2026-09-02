@@ -167,11 +167,14 @@
 
     /* Hero Section */
     .hero { text-align: center; padding: 40px 0 20px; }
+    
+    /* Foto Profil dengan Zoom Effect */
     .img-wrapper {
       position: relative;
       width: 150px;
       height: 150px;
       margin: 0 auto 20px;
+      cursor: pointer;
     }
     .profile-img {
       width: 100%;
@@ -180,7 +183,25 @@
       object-fit: cover;
       border: 2px solid var(--primary);
       box-shadow: 0 0 30px var(--primary-glow);
+      transition: transform 0.3s ease;
     }
+    .img-wrapper:hover .profile-img {
+      transform: scale(1.05);
+    }
+    .profile-zoom-overlay {
+      position: absolute;
+      inset: 0;
+      border-radius: 50%;
+      background: rgba(6, 9, 17, 0.4);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      opacity: 0;
+      transition: 0.3s;
+      color: #fff;
+      font-size: 1.2rem;
+    }
+    .img-wrapper:hover .profile-zoom-overlay { opacity: 1; }
 
     .hero h1 { font-size: 2.4rem; font-weight: 800; letter-spacing: -0.5px; margin-bottom: 6px; }
     .hero .subtitle { font-size: 1.1rem; color: var(--primary); font-weight: 600; margin-bottom: 8px; }
@@ -240,6 +261,12 @@
     }
     h2 i { color: var(--primary); }
 
+    /* PARAGRAF JUSTIFY (RATA KIRI KANAN) */
+    p, .job-desc, .about-text {
+      text-align: justify;
+      text-justify: inter-word;
+    }
+
     /* Skills Badges */
     .skills-container { display: flex; flex-wrap: wrap; gap: 10px; }
     .skill-tag {
@@ -272,7 +299,7 @@
     .company { color: var(--primary); font-weight: 600; font-size: 0.92rem; }
     .period { font-family: 'JetBrains Mono', monospace; font-size: 0.82rem; color: var(--text-sub); margin-bottom: 10px; }
     .job-desc { color: var(--text-sub); font-size: 0.95rem; margin-left: 18px; }
-    .job-desc li { margin-bottom: 6px; }
+    .job-desc li { margin-bottom: 6px; text-align: justify; }
 
     /* Certifications Grid */
     .cert-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 18px; }
@@ -404,6 +431,7 @@
       border-radius: 12px;
       border: 1px solid var(--primary);
       box-shadow: 0 0 40px var(--primary-glow);
+      object-fit: contain;
     }
 
     /* Modal Contact Box */
@@ -418,7 +446,7 @@
       text-align: center;
     }
     .contact-modal-box h3 { font-size: 1.4rem; margin-bottom: 6px; color: var(--text-main); }
-    .contact-modal-box p { font-size: 0.9rem; color: var(--text-sub); margin-bottom: 20px; }
+    .contact-modal-box p { font-size: 0.9rem; color: var(--text-sub); margin-bottom: 20px; text-align: center; }
     
     .social-links-grid { display: flex; flex-direction: column; gap: 10px; }
     
@@ -536,7 +564,7 @@
       transform: translateY(-3px);
       box-shadow: 0 4px 12px var(--primary-glow);
     }
-    .footer-text { font-size: 0.9rem; color: var(--text-sub); }
+    .footer-text { font-size: 0.9rem; color: var(--text-sub); text-align: center; }
     .footer-text strong { color: var(--primary); }
 
     /* Scroll To Top */
@@ -567,21 +595,39 @@
 
     @keyframes pulse { 0% { opacity: 1; } 50% { opacity: 0.4; } 100% { opacity: 1; } }
 
+    /* OPTIMASI KHUSUS TAMPILAN HP (MOBILE FRIENDLY) */
     @media (max-width: 768px) {
-      .nav-container { flex-wrap: wrap; gap: 10px; justify-content: center; }
-      .nav-links { overflow-x: auto; width: 100%; justify-content: center; padding-bottom: 4px; }
-      .nav-links button { padding: 6px 10px; font-size: 0.8rem; white-space: nowrap; }
+      .container { padding: 0 14px; }
+      .nav-container { flex-wrap: wrap; gap: 10px; justify-content: center; padding: 0 14px; }
+      .nav-links { overflow-x: auto; width: 100%; justify-content: flex-start; padding-bottom: 6px; }
+      .nav-links button { padding: 6px 12px; font-size: 0.8rem; white-space: nowrap; }
       .time-widget { display: none; }
-      .hero h1 { font-size: 1.8rem; }
+      
+      .hero { padding: 25px 0 15px; }
+      .hero h1 { font-size: 1.75rem; }
+      .hero .subtitle { font-size: 1rem; }
+      .img-wrapper { width: 125px; height: 125px; }
+
+      .card-box { padding: 20px 16px; }
+      .stats-grid { grid-template-columns: 1fr; gap: 10px; }
+      .btn-group { flex-direction: column; width: 100%; gap: 10px; }
+      .btn { width: 100%; justify-content: center; }
+
+      .cert-grid { grid-template-columns: 1fr; }
+      .timeline { padding-left: 14px; }
+      .timeline-dot { left: -21px; width: 10px; height: 10px; }
+
+      p, .job-desc, .about-text {
+        font-size: 0.9rem;
+        hyphens: auto;
+      }
     }
   </style>
 </head>
 <body>
 
-  <!-- Toast Notification Copy -->
   <div id="toast" class="toast-msg"><i class="fa-solid fa-check-circle"></i> Berhasil disalin ke clipboard!</div>
 
-  <!-- Navbar Navigation -->
   <nav>
     <div class="nav-container">
       <div class="nav-left">
@@ -613,12 +659,13 @@
 
   <div class="container">
 
-    <!-- 1. PROFILE SECTION -->
     <div id="tab-profile" class="section-block">
       <header class="hero">
-        <div class="img-wrapper">
+        <div class="img-wrapper" onclick="openLightbox('foto-rafi.jpg')">
           <img src="foto-rafi.jpg" alt="Rafi Dwi Putra" class="profile-img">
+          <div class="profile-zoom-overlay"><i class="fa-solid fa-magnifying-glass-plus"></i></div>
         </div>
+        
         <h1>Rafi Dwi Putra</h1>
         <p class="subtitle">Network Support Operation & Network Engineer</p>
         <p class="location"><i class="fa-solid fa-location-dot"></i> Jakarta, Indonesia</p>
@@ -626,7 +673,6 @@
         <div class="btn-group">
           <button class="btn btn-primary" onclick="openContactModal()"><i class="fa-solid fa-paper-plane"></i> Hubungi Saya</button>
           
-          <!-- Tombol Ke Google Drive PDF CV -->
           <a href="https://drive.google.com/file/d/1nRXF-NIvEv8pWn76VzKGM5H4f93766vX/view?usp=sharing" target="_blank" class="btn btn-secondary"><i class="fa-solid fa-file-arrow-down"></i> Lihat / Download CV</a>
           
           <a href="https://www.linkedin.com/in/rafi-dwi-putra-182873194/" target="_blank" class="btn btn-secondary"><i class="fa-brands fa-linkedin"></i> LinkedIn</a>
@@ -649,11 +695,10 @@
       </header>
     </div>
 
-    <!-- 2. TENTANG SECTION -->
     <div id="tab-about" class="section-block">
       <div class="card-box">
         <h2><i class="fa-solid fa-user-gear"></i> Tentang Saya</h2>
-        <p style="color: var(--text-sub); font-size: 1rem; line-height: 1.8; margin-bottom: 20px;">
+        <p class="about-text" style="color: var(--text-sub); font-size: 1rem; line-height: 1.8; margin-bottom: 20px;">
           Saya adalah lulusan Teknik Informatika (S1) Mercu Buana dengan fokus spesialisasi di bidang jaringan dan infrastruktur IT. Memiliki rekam jejak profesional lebih dari 8 tahun di industri Internet Service Provider (ISP) bersama PT Jala Lintas Media. Berpengalaman memimpin dan mengelola arsitektur jaringan <i>wired</i> & <i>wireless</i>, pengawasan jaringan <i>backbone</i>, routing protocol (BGP, OSPF), sistem autentikasi terpusat (RADIUS/TACACS+), hingga penanganan insiden teknis di tingkat pelanggan secara cepat dan efisien.
         </p>
 
@@ -672,7 +717,6 @@
       </div>
     </div>
 
-    <!-- 3. KEAHLIAN SECTION -->
     <div id="tab-skills" class="section-block">
       <div class="card-box">
         <h2><i class="fa-solid fa-microchip"></i> Keahlian & Tools Utama</h2>
@@ -694,7 +738,6 @@
       </div>
     </div>
 
-    <!-- 4. PENGALAMAN SECTION -->
     <div id="tab-experience" class="section-block">
       <div class="card-box">
         <h2><i class="fa-solid fa-briefcase"></i> Pengalaman Kerja</h2>
@@ -742,7 +785,6 @@
       </div>
     </div>
 
-    <!-- 5. SERTIFIKASI SECTION -->
     <div id="tab-certifications" class="section-block">
       <div class="card-box">
         <h2><i class="fa-solid fa-certificate"></i> Sertifikasi Profesional</h2>
@@ -850,7 +892,6 @@
 
   </div>
 
-  <!-- FOOTER SECTION -->
   <footer>
     <div class="container footer-content">
       <div class="footer-socials">
@@ -871,13 +912,11 @@
     </div>
   </footer>
 
-  <!-- MODAL LIGHTBOX SERTIFIKAT -->
   <div id="lightboxModal" class="modal" onclick="closeModal('lightboxModal')">
     <span class="close-modal">&times;</span>
     <img class="lightbox-img" id="modalCertImg" onclick="event.stopPropagation()">
   </div>
 
-  <!-- MODAL HUBUNGI SAYA -->
   <div id="contactModal" class="modal" onclick="closeModal('contactModal')">
     <div class="contact-modal-box" onclick="event.stopPropagation()">
       <h3>Hubungi Rafi</h3>
@@ -919,13 +958,12 @@
         </a>
 
         <button type="button" class="social-btn btn-back" onclick="closeModal('contactModal')">
-          <i class="fa-solid fa-arrow-left"></i> Kembali ke Profil
+          <i class="fa-solid fa-arrow-left"></i> Kembali ke Profile
         </button>
       </div>
     </div>
   </div>
 
-  <!-- TOMBOL SCROLL TO TOP -->
   <button id="scrollTopBtn" onclick="scrollToTop()" title="Kembali ke Atas">
     <i class="fa-solid fa-arrow-up"></i>
   </button>
@@ -999,7 +1037,7 @@
       document.getElementById('contactModal').classList.add('show');
     }
 
-    // 6. Lightbox Sertifikat
+    // 6. Lightbox Sertifikat & Foto Profil
     function openLightbox(src) {
       const modalImg = document.getElementById('modalCertImg');
       modalImg.src = src;
