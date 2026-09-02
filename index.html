@@ -1,0 +1,1051 @@
+<!DOCTYPE html>
+<html lang="id" data-theme="dark">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Rafi Dwi Putra — Network Engineer Portfolio</title>
+  
+  <meta name="description" content="Portofolio Rafi Dwi Putra - Coordinator Network Support Operation & Network Engineer.">
+  <meta property="og:title" content="Rafi Dwi Putra — Portfolio">
+  
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🌐</text></svg>">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;600&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+
+  <style>
+    :root[data-theme="dark"] {
+      --bg-color: #060911;
+      --card-bg: rgba(15, 23, 42, 0.65);
+      --card-border: rgba(56, 189, 248, 0.18);
+      --card-hover-border: rgba(56, 189, 248, 0.5);
+      --text-main: #f8fafc;
+      --text-sub: #94a3b8;
+      --primary: #38bdf8;
+      --primary-glow: rgba(56, 189, 248, 0.35);
+      --nav-bg: rgba(6, 9, 17, 0.85);
+      --tag-bg: rgba(56, 189, 248, 0.08);
+      --badge-green: #22c55e;
+      --skeleton-bg: rgba(255, 255, 255, 0.05);
+      --skeleton-shine: rgba(255, 255, 255, 0.12);
+    }
+
+    :root[data-theme="light"] {
+      --bg-color: #f1f5f9;
+      --card-bg: rgba(255, 255, 255, 0.75);
+      --card-border: rgba(2, 132, 199, 0.2);
+      --card-hover-border: rgba(2, 132, 199, 0.6);
+      --text-main: #0f172a;
+      --text-sub: #475569;
+      --primary: #0284c7;
+      --primary-glow: rgba(2, 132, 199, 0.2);
+      --nav-bg: rgba(241, 245, 249, 0.85);
+      --tag-bg: rgba(2, 132, 199, 0.1);
+      --badge-green: #16a34a;
+      --skeleton-bg: rgba(0, 0, 0, 0.06);
+      --skeleton-shine: rgba(0, 0, 0, 0.12);
+    }
+
+    * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Plus Jakarta Sans', sans-serif; }
+    html { scroll-behavior: smooth; }
+    
+    body {
+      background-color: var(--bg-color);
+      color: var(--text-main);
+      line-height: 1.6;
+      transition: background-color 0.4s ease, color 0.4s ease;
+      background-image: 
+        radial-gradient(circle at 15% 15%, var(--primary-glow) 0%, transparent 40%),
+        radial-gradient(circle at 85% 85%, rgba(14, 165, 233, 0.15) 0%, transparent 40%);
+      background-attachment: fixed;
+      min-height: 100vh;
+    }
+
+    .container { max-width: 980px; margin: 0 auto; padding: 0 20px; }
+
+    /* Navbar Grid Layout */
+    nav {
+      position: sticky;
+      top: 0;
+      background: var(--nav-bg);
+      backdrop-filter: blur(16px);
+      -webkit-backdrop-filter: blur(16px);
+      z-index: 100;
+      border-bottom: 1px solid var(--card-border);
+      padding: 14px 0;
+    }
+    .nav-container {
+      max-width: 980px;
+      margin: 0 auto;
+      padding: 0 20px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .nav-left { display: flex; align-items: center; gap: 15px; }
+
+    .logo {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 1.1rem;
+      font-weight: 700;
+      color: var(--primary);
+      text-decoration: none;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      cursor: pointer;
+    }
+    
+    .nav-links { display: flex; gap: 6px; list-style: none; }
+    .nav-links button {
+      background: transparent;
+      border: 1px solid transparent;
+      color: var(--text-sub);
+      font-size: 0.88rem;
+      font-weight: 600;
+      padding: 6px 14px;
+      border-radius: 8px;
+      cursor: pointer;
+      transition: 0.3s;
+    }
+    .nav-links button:hover { color: var(--primary); background: var(--tag-bg); }
+    .nav-links button.active {
+      color: var(--primary);
+      background: var(--tag-bg);
+      border-color: var(--card-border);
+      box-shadow: 0 0 10px var(--primary-glow);
+    }
+
+    .nav-right { display: flex; align-items: center; gap: 12px; }
+
+    /* Live Clock Widget */
+    .time-widget {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.8rem;
+      background: var(--tag-bg);
+      border: 1px solid var(--card-border);
+      padding: 6px 12px;
+      border-radius: 8px;
+      color: var(--primary);
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+    .live-dot {
+      width: 6px;
+      height: 6px;
+      background-color: var(--badge-green);
+      border-radius: 50%;
+      box-shadow: 0 0 8px var(--badge-green);
+      animation: pulse 1.5s infinite;
+    }
+
+    /* Theme Button */
+    .theme-btn {
+      background: var(--tag-bg);
+      border: 1px solid var(--card-border);
+      color: var(--primary);
+      width: 36px;
+      height: 36px;
+      border-radius: 8px;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1rem;
+      transition: 0.3s;
+    }
+    .theme-btn:hover { border-color: var(--primary); transform: translateY(-1px); }
+
+    /* Section Styling */
+    .section-block {
+      margin-top: 40px;
+      scroll-margin-top: 100px;
+    }
+
+    /* Hero Section */
+    .hero { text-align: center; padding: 40px 0 20px; }
+    .img-wrapper {
+      position: relative;
+      width: 150px;
+      height: 150px;
+      margin: 0 auto 20px;
+    }
+    .profile-img {
+      width: 100%;
+      height: 100%;
+      border-radius: 50%;
+      object-fit: cover;
+      border: 2px solid var(--primary);
+      box-shadow: 0 0 30px var(--primary-glow);
+    }
+
+    .hero h1 { font-size: 2.4rem; font-weight: 800; letter-spacing: -0.5px; margin-bottom: 6px; }
+    .hero .subtitle { font-size: 1.1rem; color: var(--primary); font-weight: 600; margin-bottom: 8px; }
+    .hero .location { color: var(--text-sub); font-size: 0.9rem; margin-bottom: 25px; }
+
+    .btn-group { display: flex; justify-content: center; gap: 12px; flex-wrap: wrap; margin-bottom: 35px; }
+    .btn {
+      padding: 10px 22px;
+      border-radius: 8px;
+      font-weight: 600;
+      text-decoration: none;
+      transition: 0.3s;
+      font-size: 0.9rem;
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      cursor: pointer;
+      border: none;
+    }
+    .btn-primary { background: var(--primary); color: #060911; box-shadow: 0 4px 20px var(--primary-glow); }
+    .btn-primary:hover { transform: translateY(-2px); filter: brightness(1.1); }
+    .btn-secondary { background: var(--card-bg); color: var(--text-main); border: 1px solid var(--card-border); backdrop-filter: blur(10px); }
+    .btn-secondary:hover { border-color: var(--primary); transform: translateY(-2px); color: var(--primary); }
+
+    /* Dashboard Stats Grid */
+    .stats-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 15px; }
+    .stat-card {
+      background: var(--card-bg);
+      border: 1px solid var(--card-border);
+      backdrop-filter: blur(12px);
+      padding: 22px 18px;
+      border-radius: 14px;
+      text-align: center;
+      transition: 0.3s;
+    }
+    .stat-card:hover { border-color: var(--card-hover-border); transform: translateY(-3px); }
+    .stat-number { font-family: 'JetBrains Mono', monospace; font-size: 1.8rem; font-weight: 800; color: var(--primary); }
+    .stat-label { font-size: 0.85rem; color: var(--text-sub); margin-top: 4px; }
+
+    /* Card Section */
+    .card-box {
+      background: var(--card-bg);
+      border: 1px solid var(--card-border);
+      backdrop-filter: blur(12px);
+      padding: 32px;
+      border-radius: 16px;
+    }
+    h2 {
+      font-size: 1.3rem;
+      color: var(--text-main);
+      margin-bottom: 20px;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      border-bottom: 1px solid var(--card-border);
+      padding-bottom: 12px;
+    }
+    h2 i { color: var(--primary); }
+
+    /* Skills Badges */
+    .skills-container { display: flex; flex-wrap: wrap; gap: 10px; }
+    .skill-tag {
+      background: var(--tag-bg);
+      border: 1px solid var(--card-border);
+      color: var(--primary);
+      padding: 8px 16px;
+      border-radius: 20px;
+      font-size: 0.9rem;
+      font-weight: 600;
+      transition: 0.3s;
+    }
+    .skill-tag:hover { background: var(--primary); color: #060911; transform: translateY(-2px); }
+
+    /* Timeline Experience */
+    .timeline { position: relative; padding-left: 20px; border-left: 2px solid var(--card-border); }
+    .timeline-item { position: relative; margin-bottom: 30px; }
+    .timeline-item:last-child { margin-bottom: 0; }
+    .timeline-dot {
+      position: absolute;
+      left: -27px;
+      top: 5px;
+      width: 12px;
+      height: 12px;
+      background: var(--primary);
+      border-radius: 50%;
+      box-shadow: 0 0 10px var(--primary);
+    }
+    .job-title { font-size: 1.15rem; font-weight: 700; color: var(--text-main); }
+    .company { color: var(--primary); font-weight: 600; font-size: 0.92rem; }
+    .period { font-family: 'JetBrains Mono', monospace; font-size: 0.82rem; color: var(--text-sub); margin-bottom: 10px; }
+    .job-desc { color: var(--text-sub); font-size: 0.95rem; margin-left: 18px; }
+    .job-desc li { margin-bottom: 6px; }
+
+    /* Certifications Grid */
+    .cert-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 18px; }
+    .cert-card {
+      background: rgba(255, 255, 255, 0.02);
+      border: 1px solid var(--card-border);
+      padding: 14px;
+      border-radius: 12px;
+      transition: 0.3s;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+    }
+    .cert-card:hover { transform: translateY(-4px); border-color: var(--primary); box-shadow: 0 6px 20px var(--primary-glow); }
+    
+    .cert-img-wrapper { 
+      position: relative; 
+      width: 100%; 
+      height: 145px; 
+      border-radius: 8px; 
+      overflow: hidden; 
+      margin-bottom: 12px;
+      background-color: var(--skeleton-bg);
+      cursor: pointer;
+    }
+
+    .cert-img-wrapper.loading::before {
+      content: '';
+      position: absolute;
+      top: 0; left: -100%;
+      width: 100%; height: 100%;
+      background: linear-gradient(90deg, transparent, var(--skeleton-shine), transparent);
+      animation: shimmer 1.5s infinite;
+      z-index: 1;
+    }
+
+    @keyframes shimmer { 100% { left: 100%; } }
+
+    .cert-img { 
+      width: 100%; 
+      height: 100%; 
+      object-fit: cover; 
+      transition: opacity 0.3s ease, transform 0.4s ease;
+      opacity: 0;
+    }
+    .cert-img.loaded { opacity: 1; }
+    .cert-card:hover .cert-img { transform: scale(1.05); }
+
+    .cert-img-fallback {
+      display: none;
+      width: 100%;
+      height: 100%;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      background: var(--tag-bg);
+      border: 1px dashed var(--card-border);
+      border-radius: 8px;
+      color: var(--primary);
+      text-align: center;
+      padding: 10px;
+    }
+    .cert-img-fallback i { font-size: 2rem; margin-bottom: 6px; }
+    .cert-img-fallback span { font-size: 0.75rem; font-weight: 600; color: var(--text-sub); }
+
+    .cert-img-wrapper.error .cert-img { display: none; }
+    .cert-img-wrapper.error .cert-img-fallback { display: flex; }
+    
+    .zoom-overlay {
+      position: absolute;
+      inset: 0;
+      background: rgba(6, 9, 17, 0.6);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      opacity: 0;
+      transition: 0.3s;
+      color: #fff;
+      font-size: 1.2rem;
+      z-index: 2;
+    }
+    .cert-img-wrapper:hover .zoom-overlay { opacity: 1; }
+
+    .cert-title { font-weight: 700; color: var(--text-main); font-size: 0.9rem; line-height: 1.3; }
+    .cert-issuer { font-size: 0.82rem; color: var(--primary); margin-top: 4px; font-weight: 600; }
+    .cert-year { font-family: 'JetBrains Mono', monospace; font-size: 0.78rem; color: var(--text-sub); margin-bottom: 8px; }
+
+    /* Link Verifikasi Sertifikat */
+    .cert-verify-link {
+      font-size: 0.78rem;
+      color: var(--primary);
+      text-decoration: none;
+      display: inline-flex;
+      align-items: center;
+      gap: 4px;
+      font-weight: 600;
+      margin-top: auto;
+      transition: 0.2s;
+    }
+    .cert-verify-link:hover { text-decoration: underline; opacity: 0.8; }
+
+    /* Modals System */
+    .modal {
+      display: none;
+      position: fixed;
+      z-index: 1000;
+      inset: 0;
+      background: rgba(6, 9, 17, 0.85);
+      backdrop-filter: blur(12px);
+      justify-content: center;
+      align-items: center;
+      padding: 20px;
+      opacity: 0;
+      transition: opacity 0.3s ease;
+    }
+    .modal.show { display: flex; opacity: 1; }
+    .close-modal {
+      position: absolute;
+      top: 20px;
+      right: 25px;
+      color: #fff;
+      font-size: 32px;
+      cursor: pointer;
+    }
+
+    .lightbox-img {
+      max-width: 90%;
+      max-height: 85vh;
+      border-radius: 12px;
+      border: 1px solid var(--primary);
+      box-shadow: 0 0 40px var(--primary-glow);
+    }
+
+    /* Modal Contact Box */
+    .contact-modal-box {
+      background: var(--bg-color);
+      border: 1px solid var(--card-border);
+      border-radius: 18px;
+      padding: 30px;
+      width: 100%;
+      max-width: 440px;
+      box-shadow: 0 0 40px var(--primary-glow);
+      text-align: center;
+    }
+    .contact-modal-box h3 { font-size: 1.4rem; margin-bottom: 6px; color: var(--text-main); }
+    .contact-modal-box p { font-size: 0.9rem; color: var(--text-sub); margin-bottom: 20px; }
+    
+    .social-links-grid { display: flex; flex-direction: column; gap: 10px; }
+    
+    .social-btn-wrapper {
+      display: flex;
+      gap: 8px;
+      width: 100%;
+    }
+
+    .social-btn {
+      flex: 1;
+      display: flex;
+      align-items: center;
+      justify-content: flex-start;
+      gap: 12px;
+      padding: 10px 16px;
+      border-radius: 10px;
+      text-decoration: none;
+      font-weight: 600;
+      font-size: 0.9rem;
+      color: #fff;
+      transition: 0.3s;
+    }
+    .social-btn i, .social-btn svg { width: 20px; text-align: center; flex-shrink: 0; }
+    .social-btn:hover { transform: translateX(3px); filter: brightness(1.1); }
+    
+    /* Tombol Copy 1-Click */
+    .btn-copy {
+      background: var(--tag-bg);
+      border: 1px solid var(--card-border);
+      color: var(--primary);
+      width: 42px;
+      border-radius: 10px;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: 0.3s;
+      flex-shrink: 0;
+    }
+    .btn-copy:hover { background: var(--primary); color: #060911; }
+
+    .btn-wa { background: #25D366; }
+    .btn-ig { background: linear-gradient(45deg, #f09433, #e6683c, #dc2743, #cc2366, #bc1888); }
+    .btn-x { background: #000000; border: 1px solid #333; }
+    .btn-tt { background: #111111; border: 1px solid #333; }
+    .btn-li { background: #0A66C2; }
+    .btn-email { background: #EA4335; }
+
+    .btn-back {
+      background: transparent;
+      border: 1px solid var(--card-border);
+      color: var(--text-sub);
+      justify-content: center;
+      cursor: pointer;
+      margin-top: 8px;
+    }
+    .btn-back:hover {
+      background: var(--tag-bg);
+      color: var(--primary);
+      border-color: var(--primary);
+      transform: translateY(-2px);
+    }
+
+    /* Toast Notification untuk Copy */
+    .toast-msg {
+      position: fixed;
+      bottom: 25px;
+      left: 50%;
+      transform: translateX(-50%) translateY(100px);
+      background: var(--primary);
+      color: #060911;
+      padding: 10px 20px;
+      border-radius: 30px;
+      font-weight: 700;
+      font-size: 0.85rem;
+      box-shadow: 0 5px 20px rgba(0,0,0,0.4);
+      z-index: 2000;
+      opacity: 0;
+      transition: all 0.4s ease;
+    }
+    .toast-msg.show {
+      transform: translateX(-50%) translateY(0);
+      opacity: 1;
+    }
+
+    /* Footer Section */
+    footer {
+      margin-top: 60px;
+      border-top: 1px solid var(--card-border);
+      padding: 30px 0;
+      text-align: center;
+      background: var(--nav-bg);
+    }
+    .footer-content { display: flex; flex-direction: column; align-items: center; gap: 12px; }
+    .footer-socials { display: flex; gap: 15px; }
+    .footer-social-icon {
+      width: 38px;
+      height: 38px;
+      border-radius: 50%;
+      background: var(--tag-bg);
+      border: 1px solid var(--card-border);
+      color: var(--primary);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      text-decoration: none;
+      font-size: 1.1rem;
+      transition: all 0.3s ease;
+    }
+    .footer-social-icon svg { width: 16px; height: 16px; fill: currentColor; }
+    .footer-social-icon:hover {
+      background: var(--primary);
+      color: #060911;
+      transform: translateY(-3px);
+      box-shadow: 0 4px 12px var(--primary-glow);
+    }
+    .footer-text { font-size: 0.9rem; color: var(--text-sub); }
+    .footer-text strong { color: var(--primary); }
+
+    /* Scroll To Top */
+    #scrollTopBtn {
+      position: fixed;
+      bottom: 25px;
+      right: 25px;
+      z-index: 99;
+      width: 45px;
+      height: 45px;
+      border: 1px solid var(--card-border);
+      background: var(--card-bg);
+      color: var(--primary);
+      border-radius: 50%;
+      cursor: pointer;
+      font-size: 1.1rem;
+      backdrop-filter: blur(10px);
+      box-shadow: 0 4px 15px var(--primary-glow);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      opacity: 0;
+      visibility: hidden;
+      transition: all 0.3s ease;
+    }
+    #scrollTopBtn.show { opacity: 1; visibility: visible; }
+    #scrollTopBtn:hover { background: var(--primary); color: #060911; transform: translateY(-4px); }
+
+    @keyframes pulse { 0% { opacity: 1; } 50% { opacity: 0.4; } 100% { opacity: 1; } }
+
+    @media (max-width: 768px) {
+      .nav-container { flex-wrap: wrap; gap: 10px; justify-content: center; }
+      .nav-links { overflow-x: auto; width: 100%; justify-content: center; padding-bottom: 4px; }
+      .nav-links button { padding: 6px 10px; font-size: 0.8rem; white-space: nowrap; }
+      .time-widget { display: none; }
+      .hero h1 { font-size: 1.8rem; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Toast Notification Copy -->
+  <div id="toast" class="toast-msg"><i class="fa-solid fa-check-circle"></i> Berhasil disalin ke clipboard!</div>
+
+  <!-- Navbar Navigation -->
+  <nav>
+    <div class="nav-container">
+      <div class="nav-left">
+        <div class="logo" onclick="scrollToSection('tab-profile')">
+          <i class="fa-solid fa-network-wired"></i> PORTOFOLIO RAFI
+        </div>
+      </div>
+
+      <ul class="nav-links">
+        <li><button class="nav-btn active" onclick="scrollToSection('tab-profile')">Profile</button></li>
+        <li><button class="nav-btn" onclick="scrollToSection('tab-about')">Tentang</button></li>
+        <li><button class="nav-btn" onclick="scrollToSection('tab-skills')">Keahlian</button></li>
+        <li><button class="nav-btn" onclick="scrollToSection('tab-experience')">Pengalaman</button></li>
+        <li><button class="nav-btn" onclick="scrollToSection('tab-certifications')">Sertifikasi</button></li>
+      </ul>
+      
+      <div class="nav-right">
+        <div class="time-widget">
+          <div class="live-dot"></div>
+          <span id="live-clock">00:00:00 WIB</span>
+        </div>
+
+        <button class="theme-btn" id="themeBtn" title="Ganti Tema">
+          <i class="fa-solid fa-moon" id="themeIcon"></i>
+        </button>
+      </div>
+    </div>
+  </nav>
+
+  <div class="container">
+
+    <!-- 1. PROFILE SECTION -->
+    <div id="tab-profile" class="section-block">
+      <header class="hero">
+        <div class="img-wrapper">
+          <img src="foto-rafi.jpg" alt="Rafi Dwi Putra" class="profile-img">
+        </div>
+        <h1>Rafi Dwi Putra</h1>
+        <p class="subtitle">Network Support Operation & Network Engineer</p>
+        <p class="location"><i class="fa-solid fa-location-dot"></i> Jakarta, Indonesia</p>
+        
+        <div class="btn-group">
+          <button class="btn btn-primary" onclick="openContactModal()"><i class="fa-solid fa-paper-plane"></i> Hubungi Saya</button>
+          
+          <!-- Tombol Ke Google Drive PDF CV -->
+          <a href="https://drive.google.com/file/d/1nRXF-NIvEv8pWn76VzKGM5H4f93766vX/view?usp=sharing" target="_blank" class="btn btn-secondary"><i class="fa-solid fa-file-arrow-down"></i> Lihat / Download CV</a>
+          
+          <a href="https://www.linkedin.com/in/rafi-dwi-putra-182873194/" target="_blank" class="btn btn-secondary"><i class="fa-brands fa-linkedin"></i> LinkedIn</a>
+        </div>
+
+        <div class="stats-grid">
+          <div class="stat-card">
+            <div class="stat-number">8+ Thn</div>
+            <div class="stat-label">Pengalaman Industri ISP</div>
+          </div>
+          <div class="stat-card">
+            <div class="stat-number">3.68</div>
+            <div class="stat-label">IPK S1 Teknik Informatika</div>
+          </div>
+          <div class="stat-card">
+            <div class="stat-number">8</div>
+            <div class="stat-label">Sertifikasi Profesional IT</div>
+          </div>
+        </div>
+      </header>
+    </div>
+
+    <!-- 2. TENTANG SECTION -->
+    <div id="tab-about" class="section-block">
+      <div class="card-box">
+        <h2><i class="fa-solid fa-user-gear"></i> Tentang Saya</h2>
+        <p style="color: var(--text-sub); font-size: 1rem; line-height: 1.8; margin-bottom: 20px;">
+          Saya adalah lulusan Teknik Informatika (S1) Mercu Buana dengan fokus spesialisasi di bidang jaringan dan infrastruktur IT. Memiliki rekam jejak profesional lebih dari 8 tahun di industri Internet Service Provider (ISP) bersama PT Jala Lintas Media. Berpengalaman memimpin dan mengelola arsitektur jaringan <i>wired</i> & <i>wireless</i>, pengawasan jaringan <i>backbone</i>, routing protocol (BGP, OSPF), sistem autentikasi terpusat (RADIUS/TACACS+), hingga penanganan insiden teknis di tingkat pelanggan secara cepat dan efisien.
+        </p>
+
+        <h2><i class="fa-solid fa-graduation-cap"></i> Pendidikan</h2>
+        <div style="margin-bottom: 15px;">
+          <div class="job-title">S1 Teknik Informatika — Universitas Mercu Buana</div>
+          <div class="company">IPK: 3.68 / 4.00 | 2019 – 2023</div>
+          <p style="color: var(--text-sub); font-size: 0.9rem; margin-top: 4px;">
+            <strong>Skripsi:</strong> Implementation and Analysis of Fiber Connections to the Home ISP Network
+          </p>
+        </div>
+        <div>
+          <div class="job-title">Teknik Komputer & Jaringan — SMKN 26 Jakarta</div>
+          <div class="company">Program 4 Tahun | 2015 – 2019</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- 3. KEAHLIAN SECTION -->
+    <div id="tab-skills" class="section-block">
+      <div class="card-box">
+        <h2><i class="fa-solid fa-microchip"></i> Keahlian & Tools Utama</h2>
+        <div class="skills-container">
+          <span class="skill-tag">Wireless Networking</span>
+          <span class="skill-tag">Cisco (CCNA)</span>
+          <span class="skill-tag">Juniper</span>
+          <span class="skill-tag">MikroTik (MTCNA)</span>
+          <span class="skill-tag">Fortinet (NSE 1, 2, 3)</span>
+          <span class="skill-tag">OLT Deployment</span>
+          <span class="skill-tag">Routing Protocol (BGP & OSPF)</span>
+          <span class="skill-tag">RADIUS / TACACS+</span>
+          <span class="skill-tag">Zabbix Monitoring</span>
+          <span class="skill-tag">LAN / WAN Infrastructure</span>
+          <span class="skill-tag">VLAN & NAT Configuration</span>
+          <span class="skill-tag">Hardware & Software Troubleshooting</span>
+          <span class="skill-tag">English Proficiency</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- 4. PENGALAMAN SECTION -->
+    <div id="tab-experience" class="section-block">
+      <div class="card-box">
+        <h2><i class="fa-solid fa-briefcase"></i> Pengalaman Kerja</h2>
+        <div class="timeline">
+
+          <div class="timeline-item">
+            <div class="timeline-dot"></div>
+            <div class="job-title">Coordinator Network Support Operation</div>
+            <div class="company">PT Jala Lintas Media — Karyawan Tetap (Permanent)</div>
+            <div class="period">Maret 2025 – Sekarang</div>
+            <ul class="job-desc">
+              <li>Memastikan kesiapan layanan dan perangkat (Ready For Service) setelah tahap instalasi, konfigurasi, dan pengujian.</li>
+              <li>Mengelola hak akses dan keamanan perangkat aktif (Router, Switch, Firewall, OLT) melalui sistem autentikasi terpusat RADIUS/TACACS+.</li>
+              <li>Memimpin kunjungan lapangan (on-site) untuk instalasi, maintenance, serta penanganan komplain teknis pelanggan secara cepat dan responsif.</li>
+              <li>Mengoordinasikan tim internal dan pelanggan selama proses penanganan di lapangan untuk memastikan kepuasan layanan.</li>
+            </ul>
+          </div>
+
+          <div class="timeline-item">
+            <div class="timeline-dot"></div>
+            <div class="job-title">Network Operations Center</div>
+            <div class="company">PT Jala Lintas Media — Full-time</div>
+            <div class="period">April 2019 – November 2025 (Jakarta, Indonesia)</div>
+            <ul class="job-desc">
+              <li>Memantau performa jaringan backbone, core device, distribution device, serta perangkat pelanggan.</li>
+              <li>Melakukan <i>first-handling troubleshooting</i> perangkat keras/lunak serta penanganan masalah pelanggan.</li>
+              <li>Menguasai manajemen TCP/IP, VLANs, IDS/IPS, NAT, DNS, dan firewall.</li>
+              <li>Mengonfigurasi dan mengoperasikan server Zabbix untuk pemantauan real-time dan notifikasi otomatis.</li>
+              <li>Menyusun laporan harian dan bulanan infrastruktur IT untuk mendukung pengambilan keputusan berbasis data.</li>
+            </ul>
+          </div>
+
+          <div class="timeline-item">
+            <div class="timeline-dot"></div>
+            <div class="job-title">Network Operations Center</div>
+            <div class="company">PT Jala Lintas Media — Internship</div>
+            <div class="period">Mei 2018 – Maret 2019 (Cibinong, Jawa Barat, Indonesia)</div>
+            <ul class="job-desc">
+              <li>Membuat laporan harian penanganan tiket masalah dan analisis performa kerja bulanan.</li>
+              <li>Melakukan penanganan pertama (first-handling) pada kendala teknis pelanggan.</li>
+            </ul>
+          </div>
+
+        </div>
+      </div>
+    </div>
+
+    <!-- 5. SERTIFIKASI SECTION -->
+    <div id="tab-certifications" class="section-block">
+      <div class="card-box">
+        <h2><i class="fa-solid fa-certificate"></i> Sertifikasi Profesional</h2>
+        <div class="cert-grid">
+          
+          <div class="cert-card">
+            <div class="cert-img-wrapper loading" onclick="openLightbox('cert-mtcna.jpg')">
+              <img src="cert-mtcna.jpg" alt="Mikrotik MTCNA" class="cert-img" loading="lazy" onload="handleImgLoad(this)" onerror="handleImgError(this)">
+              <div class="cert-img-fallback"><i class="fa-solid fa-award"></i><span>Mikrotik MTCNA</span></div>
+              <div class="zoom-overlay"><i class="fa-solid fa-magnifying-glass-plus"></i></div>
+            </div>
+            <div class="cert-title">Mikrotik MTCNA</div>
+            <div class="cert-issuer">Exam Training at IDN ID</div>
+            <div class="cert-year">2024</div>
+            <a href="https://mikrotik.com/training/certificates" target="_blank" class="cert-verify-link"><i class="fa-solid fa-arrow-up-right-from-square"></i> Verifikasi Licensi</a>
+          </div>
+
+          <div class="cert-card">
+            <div class="cert-img-wrapper loading" onclick="openLightbox('cert-bnsp.jpg')">
+              <img src="cert-bnsp.jpg" alt="Network Administrator Junior BNSP" class="cert-img" loading="lazy" onload="handleImgLoad(this)" onerror="handleImgError(this)">
+              <div class="cert-img-fallback"><i class="fa-solid fa-award"></i><span>Junior NetAdmin</span></div>
+              <div class="zoom-overlay"><i class="fa-solid fa-magnifying-glass-plus"></i></div>
+            </div>
+            <div class="cert-title">Network Administrator Junior</div>
+            <div class="cert-issuer">BNSP</div>
+            <div class="cert-year">2023</div>
+            <a href="#" target="_blank" class="cert-verify-link"><i class="fa-solid fa-arrow-up-right-from-square"></i> Verifikasi Licensi</a>
+          </div>
+
+          <div class="cert-card">
+            <div class="cert-img-wrapper loading" onclick="openLightbox('cert-ccna-enterprise.jpg')">
+              <img src="cert-ccna-enterprise.jpg" alt="CCNA Enterprise" class="cert-img" loading="lazy" onload="handleImgLoad(this)" onerror="handleImgError(this)">
+              <div class="cert-img-fallback"><i class="fa-solid fa-award"></i><span>CCNA Enterprise</span></div>
+              <div class="zoom-overlay"><i class="fa-solid fa-magnifying-glass-plus"></i></div>
+            </div>
+            <div class="cert-title">CCNA Enterprise Networking, Security & Automation</div>
+            <div class="cert-issuer">CISCO</div>
+            <div class="cert-year">2022</div>
+            <a href="https://www.credly.com" target="_blank" class="cert-verify-link"><i class="fa-solid fa-arrow-up-right-from-square"></i> Verifikasi Licensi</a>
+          </div>
+
+          <div class="cert-card">
+            <div class="cert-img-wrapper loading" onclick="openLightbox('cert-fortinet-nse1.jpg')">
+              <img src="cert-fortinet-nse1.jpg" alt="Fortinet NSE 1" class="cert-img" loading="lazy" onload="handleImgLoad(this)" onerror="handleImgError(this)">
+              <div class="cert-img-fallback"><i class="fa-solid fa-shield-halved"></i><span>Fortinet NSE 1</span></div>
+              <div class="zoom-overlay"><i class="fa-solid fa-magnifying-glass-plus"></i></div>
+            </div>
+            <div class="cert-title">FORTINET NSE 1 Network Security Associate</div>
+            <div class="cert-issuer">Fortinet</div>
+            <div class="cert-year">2022</div>
+            <a href="#" target="_blank" class="cert-verify-link"><i class="fa-solid fa-arrow-up-right-from-square"></i> Verifikasi Licensi</a>
+          </div>
+
+          <div class="cert-card">
+            <div class="cert-img-wrapper loading" onclick="openLightbox('cert-fortinet-nse2.jpg')">
+              <img src="cert-fortinet-nse2.jpg" alt="Fortinet NSE 2" class="cert-img" loading="lazy" onload="handleImgLoad(this)" onerror="handleImgError(this)">
+              <div class="cert-img-fallback"><i class="fa-solid fa-shield-halved"></i><span>Fortinet NSE 2</span></div>
+              <div class="zoom-overlay"><i class="fa-solid fa-magnifying-glass-plus"></i></div>
+            </div>
+            <div class="cert-title">FORTINET NSE 2 Network Security Associate</div>
+            <div class="cert-issuer">Fortinet</div>
+            <div class="cert-year">2022</div>
+            <a href="#" target="_blank" class="cert-verify-link"><i class="fa-solid fa-arrow-up-right-from-square"></i> Verifikasi Licensi</a>
+          </div>
+
+          <div class="cert-card">
+            <div class="cert-img-wrapper loading" onclick="openLightbox('cert-fortinet-nse3.jpg')">
+              <img src="cert-fortinet-nse3.jpg" alt="Fortinet NSE 3" class="cert-img" loading="lazy" onload="handleImgLoad(this)" onerror="handleImgError(this)">
+              <div class="cert-img-fallback"><i class="fa-solid fa-shield-halved"></i><span>Fortinet NSE 3</span></div>
+              <div class="zoom-overlay"><i class="fa-solid fa-magnifying-glass-plus"></i></div>
+            </div>
+            <div class="cert-title">FORTINET NSE 3 Network Security Associate</div>
+            <div class="cert-issuer">Fortinet</div>
+            <div class="cert-year">2022</div>
+            <a href="#" target="_blank" class="cert-verify-link"><i class="fa-solid fa-arrow-up-right-from-square"></i> Verifikasi Licensi</a>
+          </div>
+
+          <div class="cert-card">
+            <div class="cert-img-wrapper loading" onclick="openLightbox('cert-ccna-rs.jpg')">
+              <img src="cert-ccna-rs.jpg" alt="CCNA Routing & Switching" class="cert-img" loading="lazy" onload="handleImgLoad(this)" onerror="handleImgError(this)">
+              <div class="cert-img-fallback"><i class="fa-solid fa-award"></i><span>CCNA R&S</span></div>
+              <div class="zoom-overlay"><i class="fa-solid fa-magnifying-glass-plus"></i></div>
+            </div>
+            <div class="cert-title">CCNA Routing and Switching</div>
+            <div class="cert-issuer">CISCO</div>
+            <div class="cert-year">2020</div>
+            <a href="#" target="_blank" class="cert-verify-link"><i class="fa-solid fa-arrow-up-right-from-square"></i> Verifikasi Licensi</a>
+          </div>
+
+          <div class="cert-card">
+            <div class="cert-img-wrapper loading" onclick="openLightbox('cert-cscu.jpg')">
+              <img src="cert-cscu.jpg" alt="CSCU Certified" class="cert-img" loading="lazy" onload="handleImgLoad(this)" onerror="handleImgError(this)">
+              <div class="cert-img-fallback"><i class="fa-solid fa-user-shield"></i><span>CSCU Certified</span></div>
+              <div class="zoom-overlay"><i class="fa-solid fa-magnifying-glass-plus"></i></div>
+            </div>
+            <div class="cert-title">CSCU Certified</div>
+            <div class="cert-issuer">EC-Council</div>
+            <div class="cert-year">2020</div>
+            <a href="#" target="_blank" class="cert-verify-link"><i class="fa-solid fa-arrow-up-right-from-square"></i> Verifikasi Licensi</a>
+          </div>
+
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+  <!-- FOOTER SECTION -->
+  <footer>
+    <div class="container footer-content">
+      <div class="footer-socials">
+        <a href="https://wa.me/6287778425751" target="_blank" class="footer-social-icon" title="WhatsApp"><i class="fa-brands fa-whatsapp"></i></a>
+        <a href="https://www.linkedin.com/in/rafi-dwi-putra-182873194/" target="_blank" class="footer-social-icon" title="LinkedIn"><i class="fa-brands fa-linkedin-in"></i></a>
+        <a href="https://instagram.com/rafdwptr" target="_blank" class="footer-social-icon" title="Instagram"><i class="fa-brands fa-instagram"></i></a>
+        
+        <a href="https://x.com/Rafdwptrr" target="_blank" class="footer-social-icon" title="X (Twitter)">
+          <svg viewBox="0 0 24 24">
+            <path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/>
+          </svg>
+        </a>
+
+        <a href="https://tiktok.com/@rafdwptr" target="_blank" class="footer-social-icon" title="TikTok"><i class="fa-brands fa-tiktok"></i></a>
+        <a href="mailto:dwiputrarafi.rd@gmail.com" class="footer-social-icon" title="Email"><i class="fa-solid fa-envelope"></i></a>
+      </div>
+      <p class="footer-text">Dibuat oleh <strong>Rafi Dwi Putra</strong> &copy; 2026. All rights reserved.</p>
+    </div>
+  </footer>
+
+  <!-- MODAL LIGHTBOX SERTIFIKAT -->
+  <div id="lightboxModal" class="modal" onclick="closeModal('lightboxModal')">
+    <span class="close-modal">&times;</span>
+    <img class="lightbox-img" id="modalCertImg" onclick="event.stopPropagation()">
+  </div>
+
+  <!-- MODAL HUBUNGI SAYA -->
+  <div id="contactModal" class="modal" onclick="closeModal('contactModal')">
+    <div class="contact-modal-box" onclick="event.stopPropagation()">
+      <h3>Hubungi Rafi</h3>
+      <p>Silakan pilih media sosial atau salin kontak secara langsung:</p>
+
+      <div class="social-links-grid">
+        
+        <div class="social-btn-wrapper">
+          <a href="https://wa.me/6287778425751?text=Halo%20Rafi,%20saya%20tertarik%20berdiskusi" target="_blank" class="social-btn btn-wa">
+            <i class="fa-brands fa-whatsapp"></i> WhatsApp Direct
+          </a>
+          <button class="btn-copy" onclick="copyToClipboard('087778425751')" title="Salin No. WA"><i class="fa-regular fa-copy"></i></button>
+        </div>
+
+        <div class="social-btn-wrapper">
+          <a href="mailto:dwiputrarafi.rd@gmail.com" class="social-btn btn-email">
+            <i class="fa-solid fa-envelope"></i> Email Official
+          </a>
+          <button class="btn-copy" onclick="copyToClipboard('dwiputrarafi.rd@gmail.com')" title="Salin Email"><i class="fa-regular fa-copy"></i></button>
+        </div>
+
+        <a href="https://www.linkedin.com/in/rafi-dwi-putra-182873194/" target="_blank" class="social-btn btn-li">
+          <i class="fa-brands fa-linkedin-in"></i> LinkedIn
+        </a>
+
+        <a href="https://instagram.com/rafdwptr" target="_blank" class="social-btn btn-ig">
+          <i class="fa-brands fa-instagram"></i> Instagram
+        </a>
+
+        <a href="https://x.com/Rafdwptrr" target="_blank" class="social-btn btn-x">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor">
+            <path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/>
+          </svg>
+          X (Twitter)
+        </a>
+
+        <a href="https://tiktok.com/@rafdwptr" target="_blank" class="social-btn btn-tt">
+          <i class="fa-brands fa-tiktok"></i> TikTok
+        </a>
+
+        <button type="button" class="social-btn btn-back" onclick="closeModal('contactModal')">
+          <i class="fa-solid fa-arrow-left"></i> Kembali ke Profil
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- TOMBOL SCROLL TO TOP -->
+  <button id="scrollTopBtn" onclick="scrollToTop()" title="Kembali ke Atas">
+    <i class="fa-solid fa-arrow-up"></i>
+  </button>
+
+  <script>
+    // 1. Smooth Scroll Navigation
+    function scrollToSection(targetId) {
+      const targetElement = document.getElementById(targetId);
+      if (targetElement) {
+        targetElement.scrollIntoView({ behavior: 'smooth' });
+      }
+    }
+
+    // Auto active state menu saat scroll
+    window.addEventListener('scroll', () => {
+      let currentSection = '';
+      const sections = document.querySelectorAll('.section-block');
+      const navBtns = document.querySelectorAll('.nav-btn');
+
+      sections.forEach(section => {
+        const sectionTop = section.offsetTop - 120;
+        if (window.scrollY >= sectionTop) {
+          currentSection = section.getAttribute('id');
+        }
+      });
+
+      navBtns.forEach(btn => {
+        btn.classList.remove('active');
+        if (btn.getAttribute('onclick').includes(currentSection)) {
+          btn.classList.add('active');
+        }
+      });
+    });
+
+    // 2. Live WIB Clock
+    function updateWIBClock() {
+      const now = new Date();
+      const options = { timeZone: 'Asia/Jakarta', hour: '2-digit', minute: '2-digit', second: '2-digit', hour12: false };
+      const timeString = new Intl.DateTimeFormat('id-ID', options).format(now).replace(/\./g, ':');
+      document.getElementById('live-clock').textContent = timeString + ' WIB';
+    }
+    setInterval(updateWIBClock, 1000);
+    updateWIBClock();
+
+    // 3. Theme Toggle Switcher
+    const themeBtn = document.getElementById('themeBtn');
+    const themeIcon = document.getElementById('themeIcon');
+    const htmlElement = document.documentElement;
+
+    themeBtn.addEventListener('click', () => {
+      const currentTheme = htmlElement.getAttribute('data-theme');
+      const newTheme = currentTheme === 'dark' ? 'light' : 'dark';
+      htmlElement.setAttribute('data-theme', newTheme);
+      themeIcon.className = newTheme === 'dark' ? 'fa-solid fa-moon' : 'fa-solid fa-sun';
+    });
+
+    // 4. Image Loading & Fallback Handlers
+    function handleImgLoad(img) {
+      img.classList.add('loaded');
+      img.parentElement.classList.remove('loading');
+    }
+
+    function handleImgError(img) {
+      const wrapper = img.parentElement;
+      wrapper.classList.remove('loading');
+      wrapper.classList.add('error');
+    }
+
+    // 5. Contact Modal Functions
+    function openContactModal() {
+      document.getElementById('contactModal').classList.add('show');
+    }
+
+    // 6. Lightbox Sertifikat
+    function openLightbox(src) {
+      const modalImg = document.getElementById('modalCertImg');
+      modalImg.src = src;
+      document.getElementById('lightboxModal').classList.add('show');
+    }
+
+    function closeModal(modalId) {
+      document.getElementById(modalId).classList.remove('show');
+    }
+
+    // Close Modal via ESC Key
+    document.addEventListener('keydown', function(e) {
+      if (e.key === 'Escape') {
+        closeModal('contactModal');
+        closeModal('lightboxModal');
+      }
+    });
+
+    // 7. 1-Click Copy Functionality & Toast Notification
+    function copyToClipboard(text) {
+      navigator.clipboard.writeText(text).then(() => {
+        const toast = document.getElementById('toast');
+        toast.classList.add('show');
+        setTimeout(() => {
+          toast.classList.remove('show');
+        }, 2500);
+      });
+    }
+
+    // 8. Scroll To Top Logic
+    const scrollTopBtn = document.getElementById('scrollTopBtn');
+
+    window.addEventListener('scroll', () => {
+      if (window.scrollY > 300) {
+        scrollTopBtn.classList.add('show');
+      } else {
+        scrollTopBtn.classList.remove('show');
+      }
+    });
+
+    function scrollToTop() {
+      window.scrollTo({
+        top: 0,
+        behavior: 'smooth'
+      });
+    }
+  </script>
+</body>
+</html>
